@@ -1,0 +1,13 @@
+version: "2.1"
+services:
+  app:
+    image: node:22.6.0-slim
+    container_name: putlocker-node
+    entrypoint: ['node', 'src/index.js']
+    working_dir: /app
+    volumes:
+      - ${PWD}:/app
+    environment:
+        PUTLOCKER_SITE: ${PUTLOCKER_SITE}
+        DOWNLOADS_DIR: ${DOWNLOADS_DIR}
+        SEASON_URL: ${SEASON_URL}
