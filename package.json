@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose up"
+    "start": "docker-compose up",
+    "start:local": "node src/index.js",
+    "build": "docker-compose build",
+    "down": "docker-compose down"
   },
   "author": "",
   "license": "ISC",

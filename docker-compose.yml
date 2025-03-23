@@ -3,11 +3,15 @@ services:
   app:
     image: node:22.6.0-slim
     container_name: putlocker-node
-    entrypoint: ['node', 'src/index.js']
+    entrypoint: ['node', "--inspect=0.0.0.0:${DEBUG_PORT}", 'src/index.js']
     working_dir: /app
     volumes:
       - ${PWD}:/app
+    ports:
+      - ${DEBUG_PORT}:${DEBUG_PORT}
     environment:
-        PUTLOCKER_SITE: ${PUTLOCKER_SITE}
-        DOWNLOADS_DIR: ${DOWNLOADS_DIR}
-        SEASON_URL: ${SEASON_URL}
+      NODE_ENV: development
+      PUTLOCKER_SITE: ${PUTLOCKER_SITE}
+      DOWNLOADS_DIR: ${DOWNLOADS_DIR}
+      SEASON_URL: ${SEASON_URL}
+    restart: on-failure
